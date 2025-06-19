@@ -30,6 +30,9 @@ The main file.
    + JC/rho_real.txt: time-dependent density matrix, real part, each row corresponds to a time step
    + JC/rho_imag.txt: time-dependent density matrix, imaginary part, each row corresponds to a time step
 
+### tevo_compile.sh
+bash script to compile. Syntax: ./tevo_compile lanc_pureS0_pulse.f90 "filename"
+
 ### rho_mp4.ipynb
 jupyter notebook to read the time-dependent density matrix and plot, run in Google colab
 
