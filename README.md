@@ -12,5 +12,5 @@ contains subroutines to
 +  init_S0ia(Nin,Ns,i_init): |S0a>|i_init>
    ...
 3. calculate time-dependent expectation values and density matrix
-+  getExT(Nin,Ns): calculate <n1>,<n2>,<n3>,<n4>,<nb>
++  getExT(Nin,Ns): calculate $<n1>$,<n2>,<n3>,<n4>,<nb>
 +  getRhoT(Nin,Ns): calculate reduced density matrix (16x16)
