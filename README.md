@@ -23,3 +23,13 @@ The main file.
 1. Ns: number of two-level sites, fixed to be 4.
 2. Nin: uplimit of photon numbers.
 3. para: array of parameters. $\[\omega, \Delta_1, \Delta_2, \Delta_3, \Delta_4, g, g'\]$
+4. alpha: coherent state alpha
+5. ht: time step size. Nt: number of time steps
+6. output files:
+   + data/Nin_Nout_lanc.txt: time-dependent expectation values
+   + JC/rho_real.txt: time-dependent density matrix, real part, each row corresponds to a time step
+   + JC/rho_imag.txt: time-dependent density matrix, imaginary part, each row corresponds to a time step
+
+### rho_mp4.ipynb
+jupyter notebook to read the time-dependent density matrix and plot
+
