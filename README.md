@@ -1,5 +1,5 @@
 # cavity
-
+$$H=\omega b^\dagger b + \sum_n\frac{\Delta_n(t)}{2}\sigma_n^z+g(t)\sum_n\sigma_n^x(b^\dagger+b)+g'(t)(b^\dagger+b)$$
 ## useful files
 ### getIndV.f90
 contains subroutines to 
@@ -22,4 +22,4 @@ contains functions to switch on/off parameters or to send pulse
 The main file. 
 1. Ns: number of two-level sites, fixed to be 4.
 2. Nin: uplimit of photon numbers.
-3. para: array of parameters. $\[\omega, \]$
+3. para: array of parameters. $\[\omega, \Delta_1, \Delta_2, \Delta_3, \Delta_4, g, g'\]$
