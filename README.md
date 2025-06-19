@@ -3,7 +3,7 @@
 ## useful files
 ### getIndV.f90
 contains subroutines to 
-1. construct the basis and the H matrix indices & values
+1. construct the H matrix indices & values
 +   para2IndV(Nin,Ns,para): off-diagonal terms
 +   para2V(Nin,Ns,para): diagonal terms
 2. construct the initial state
@@ -12,5 +12,5 @@ contains subroutines to
 +  init_S0ia(Nin,Ns,i_init): |S0a>|i_init>
    ...
 3. calculate time-dependent expectation values and density matrix
-+  getExT(Nin,Ns): calculate $\langle n1\rangle$,<n2>,<n3>,<n4>,<nb>
++  getExT(Nin,Ns): calculate $\langle n_1\rangle$,$\langle n_2\rangle$,$\langle n_3\rangle$,$\langle n_4\rangle$, $\langle n_b\rangle$
 +  getRhoT(Nin,Ns): calculate reduced density matrix (16x16)
