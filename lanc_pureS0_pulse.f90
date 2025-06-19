@@ -50,7 +50,7 @@ write(*,*) para(Ns+2)
 write(*,*) "g2="
 write(*,*) para(Ns+3)
 ! 
-alpha = 2.0D0
+alpha = 1.0D0
 Gamma_out = 0.02D0
 
 ! 
@@ -73,8 +73,8 @@ print '("length=",I10)', i_of_b-1
 print '("length=",I10)', i_of_d-1
 print '("  Non-diag term time = ",f10.3," seconds.")',tw0-t_start
 
-!! start with coherent state + 0000
-call init_coherent(Nin,Ns,alpha)
+!! start with number state + S0
+call init_S0ia(Nin,Ns,0)
 write(*,*) "<Psi0|Psi0>:"
 write(*,*) dot_product(psi0,psi0)
 
@@ -87,14 +87,22 @@ call make_alloc
   write(*,*) exN
   call getRhoT(Nin,Ns)
   write(*,*) "rho(t0):"
+  open(1,file="data/t0_rho_ED_real.txt")
+  open(2,file="data/t0_rho_ED_imag.txt")
   do i=1,2**Ns
+    write(1,*) real(rhot(i,:))
+    write(2,*) aimag(rhot(i,:))
     write(*,*) rhot(i,i)
     trace_rho = trace_rho + rhot(i,i)
   end do
+  close(1)
+  close(2)
   write(*,*) "Tr rho:"
   write(*,*) trace_rho
-  open(3,file="saved_data/rho_real.txt")
-  open(4,file="saved_data/rho_imag.txt")
+  !open(3,file="/export/zz/cavity/JC/rho_real.txt")
+  !open(4,file="/export/zz/cavity/JC/rho_imag.txt")
+  open(3,file="JC/rho_real.txt")
+  open(4,file="JC/rho_imag.txt")
   write(3,*) real(rhot)
   write(4,*) aimag(rhot)
 !! ground state done.
@@ -108,14 +116,14 @@ n_superG = 1
 
   call cpu_time(tw0)
  
-  open(1,file="saved_data/Nin_Nout_lanc.txt")
+  open(1,file="data/Nin_Nout_lanc.txt")
   do i=0,Ntstep-1
     tt = ht*(i+0.5D0)
     ft = 1.D0
-    !para(2) = switchoff_factor(tt,10.D0,50.D0,0.5D0)
-    !para(Ns+3) = 2.D0 * superG_factor(tt,80.D0,1.D0,5.D0,n_superG)
-    !call para2V(Nin,Ns,para)
-    !call para2IndV(Nin,Ns,para)
+    para(2) = switchoff_factor(tt,10.D0,50.D0,0.5D0)
+    para(Ns+3) = 2.D0 * superG_factor(tt,80.D0,1.D0,5.D0,n_superG)
+    call para2V(Nin,Ns,para)
+    call para2IndV(Nin,Ns,para)
     call mylanczos(ht,ft)
     call getExT(Nin,Ns)
     write(1,*) exN
@@ -134,10 +142,16 @@ n_superG = 1
   call getRhoT(Nin,Ns)
   trace_rho = (0.D0,0.D0)
   write(*,*) "rho(tf):"
+  open(1,file="data/tf_rho_ED_real.txt")
+  open(2,file="data/tf_rho_ED_imag.txt")
   do i=1,2**Ns
+    write(1,*) real(rhot(i,:))
+    write(2,*) aimag(rhot(i,:))
     write(*,*) rhot(i,i)
     trace_rho = trace_rho + rhot(i,i)
   end do
+  close(1)
+  close(2)
   write(*,*) "Tr rho:"
   write(*,*) trace_rho
   call cpu_time(tw1)
